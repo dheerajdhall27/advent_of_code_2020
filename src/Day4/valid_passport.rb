@@ -4,16 +4,27 @@
 # is valid
 
 require 'set'
+require '../common/file_reader'
 
+# This class is an implementation to find the Valid passport
 class ValidPassport
 
     def initialize
-        file = File.open("input.rtf")
-        @file_data = file.read
+        @file_data = FileReader.new.get_file_data("input.rtf")
         @passport_set = Set["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid", "cid"]
     end
 
-    def check_number_of_valid_passports
+    # This method is used to the number of valid passports
+    # a passport is valid if it has the following required fields
+    # byr (Birth Year)
+    # iyr (Issue Year)
+    # eyr (Expiration Year)
+    # hgt (Height)
+    # hcl (Hair Color)
+    # ecl (Eye Color)
+    # pid (Passport ID)
+    # cid (Country ID) - This an optional field
+    def get_number_of_valid_passports
         passports_data = @file_data.split("\n\n")
 
         count = 0
@@ -36,6 +47,8 @@ class ValidPassport
         count
     end
 
+    # This method is used to the number of valid passports
+    # but there is a validation involved. check the problem statement from line 52-61
     def get_number_of_valid_passports_with_validation
         passports_data = @file_data.split("\n\n")
 
@@ -61,6 +74,11 @@ class ValidPassport
     end
 
 
+    # This method is used to validate the passport fields
+    # it calls the multiple validate methods to check that the passport is valid
+    # 
+    #
+    # SIDE NOTE: This can be accomplished very easily with validations in the ApplicationRecord
     def validate_fields? pass_hash
         v = validate_birth_year? pass_hash["byr"]
         v1 = validate_issue_year? pass_hash["iyr"]
@@ -75,6 +93,8 @@ class ValidPassport
         true
     end
 
+    # Start of validations
+    # Check the problem statement lines 52-61
     def validate_birth_year? byr
         return false if byr.length > 4
 
@@ -122,8 +142,9 @@ class ValidPassport
     def validate_passport_id? pid
         pid.match(/^[0-9]{9}$/) != nil
     end
+    # End of validations
 end
 
 vp = ValidPassport.new
-# puts vp.check_number_of_valid_passports
+puts vp.get_number_of_valid_passports
 puts vp.get_number_of_valid_passports_with_validation

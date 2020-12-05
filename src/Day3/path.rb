@@ -3,11 +3,12 @@
 
 # This class is to draw out a path in a 2D array
 # starting from the top left.
+
+require '../common/file_reader'
 class Path
 
     def initialize
-        file = File.open("input.rtf")
-        @file_data = file.read         
+        @file_data = FileReader.new.get_file_data("input.rtf")
         @tree = "#"   
     end
 
@@ -54,8 +55,8 @@ end
 
 p = Path.new
 map = p.create_map
-right = 1
-down = 2
+right = 3
+down = 1
 puts p.get_number_of_trees map, right, down
 
 

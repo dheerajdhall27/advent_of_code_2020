@@ -3,6 +3,7 @@
 
 # This class represents the the 1st problem from Advent of Code 2020
 # The implementation is used to get the 2sum and 3sum with the target set as 2020
+require '../common/file_reader'
 class ExpenseReport
 
     attr_accessor :file_data
@@ -10,15 +11,16 @@ class ExpenseReport
     # This is the ExpenseReport Constructor
     # It is used to get the file data
     def initialize
-        file = File.open("input.rtf")
-        @file_data = file.read.split("\n")
+        @file_data = FileReader.new.get_file_data("input.rtf")
     end
 
     # This method is used to return the product of two numbers that sum to 2020
     # This is similar to the two sum problem
     def get_two_numbers_product
         number_dictionary = {}
-        @file_data.each do |num|
+        num_data = @file_data.split("\n")
+        
+        num_data.each do |num|
             if number_dictionary[2020 - num.to_i]
                 return num.to_i * (2020 - num.to_i)
             else
@@ -32,16 +34,17 @@ class ExpenseReport
     # This is similar to the three sum problem
     def get_three_numbers_product
         number_dictionary = {}
-        @file_data.each do |num|
+        num_data = @file_data.split("\n")
+        num_data.each do |num|
             number_dictionary[num.to_i] = num.to_i
         end
         
-        for i in 0..@file_data.length
-            for j in i + 1..@file_data.length
-                sum = @file_data[i].to_i + @file_data[j].to_i 
+        for i in 0..num_data.length
+            for j in i + 1..num_data.length
+                sum = num_data[i].to_i + num_data[j].to_i 
                 if number_dictionary[2020 - sum]
                     val = number_dictionary[2020 - sum]
-                    return val * @file_data[i].to_i * @file_data[j].to_i
+                    return val * num_data[i].to_i * num_data[j].to_i
                 end
             end
         end

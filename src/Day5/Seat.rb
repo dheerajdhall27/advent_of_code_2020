@@ -3,12 +3,13 @@
 
 # This class represents the Seat on an airplane
 # which is calculated from string that uses binary space partitioning
+
+require '../common/file_reader'
 class Seat
 
 
     def initialize
-        file = File.open("input.rtf")
-        @file_data = file.read
+        @file_data = FileReader.new.get_file_data("input.rtf")
         @all_seats = []
     end
 
