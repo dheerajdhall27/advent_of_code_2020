@@ -8,3 +8,13 @@
 * Day 6: Custom Customs [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day6/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day6/sum_of_counts.rb)]
 
 
+## License
+
+advent_of_code_2020 is an implementation of the [Advent Of Code](https://adventofcode.com/) in Ruby
+Copyright &copy; 2020 Dheeraj Dhall
+
+advent_of_code_2020 is free software intended for edification. It can be redistributed/modified 
+under the GNU free license as published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+License can be found at [GNU Licenses](https://www.gnu.org/licenses/).
