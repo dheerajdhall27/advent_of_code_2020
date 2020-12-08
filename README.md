@@ -6,7 +6,7 @@
 * Day 4: Passport Processing [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day4/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day4/valid_passport.rb)]
 * Day 5: Binary Boarding [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day5/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day5/seat.rb)]
 * Day 6: Custom Customs [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day6/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day6/sum_of_counts.rb)]
-
+* Day 7: Handy Haversacks [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day7/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day7/sum_of_counts.rb)]
 
 ## License
 
