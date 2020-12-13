@@ -9,6 +9,7 @@
 * Day 7: Handy Haversacks [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day7/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day7/sum_of_counts.rb)]
 * Day 8: Handheld Halting [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day8/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day8/accumulator.rb)]
 * Day 9: Encoding Error [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day9/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day9/exchange_masking_addition_system.rb)]
+* Day 10: Encoding Error [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day10/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day10/jolt_difference.rb)]
 
 ## License
 
