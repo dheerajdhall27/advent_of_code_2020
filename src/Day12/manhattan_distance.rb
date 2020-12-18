@@ -41,7 +41,6 @@ class ManhattanDistance
 
         @rows.each do |dir|
             amount = dir[1..dir.length - 1].to_i
-            
             update_direction_and_position dir[0], amount
         end
         [@x_distance, @y_distance]
@@ -50,53 +49,21 @@ class ManhattanDistance
     def update_direction_and_position dir, amount
         case dir
         when EAST
-            @x_distance = @x_distance + amount if @ship_world_orientation["x"] == EAST
-            @x_distance = @x_distance - amount if @ship_world_orientation["x"] == WEST
+            @x_distance += amount
         when WEST
-            @x_distance = @x_distance - amount if @ship_world_orientation["x"] == EAST
-            @x_distance = @x_distance + amount if @ship_world_orientation["x"] == WEST
+            @x_distance -= amount
         when NORTH
-            @y_distance = @y_distance + amount if @ship_world_orientation["y"] == NORTH
-            @y_distance = @y_distance - amount if @ship_world_orientation["y"] == SOUTH
+            @y_distance += amount
         when SOUTH
-            @y_distance = @y_distance - amount if @ship_world_orientation["y"] == NORTH
-            @y_distance = @y_distance + amount if @ship_world_orientation["y"] == SOUTH
+            @y_distance -= amount
         when LEFT, RIGHT
             @ship_angle = dir == LEFT ? @ship_angle - amount : @ship_angle + amount
             @ship_angle = @ship_angle % 360
-            
+                
             direction = @ship_orientation_data[@ship_angle]
             @ship_orientation = direction
         when FORWARD
-            x_orientation = @ship_world_orientation["x"]
-            y_orientation = @ship_world_orientation["y"]
-
-            if @ship_orientation == EAST or @ship_orientation == WEST
-                if x_orientation == @ship_orientation
-                    @x_distance += amount
-                else
-                    @x_distance -= amount
-
-                    if @x_distance <= 0
-                        @x_distance *= -1
-                        @ship_world_orientation["x"] = @ship_orientation
-                    end
-                end
-            end
-
-            if @ship_orientation == NORTH or @ship_orientation == SOUTH
-                if y_orientation == @ship_orientation
-                    @y_distance += amount
-                else
-                    @y_distance -= amount
-    
-                    if @y_distance <= 0
-                        @y_distance *= -1
-                        @ship_world_orientation["y"] = @ship_orientation
-                    end
-                end
-            end
-
+            update_direction_and_position @ship_orientation, amount
         end
     end
 
