@@ -7,6 +7,7 @@ require '../common/file_reader'
 # 1. L - Empty 2. # - occupied
 # There is a third state but for a position in the row
 # It is (.) which refers to floor
+# TODO: Fix the redundancy in code
 class SeatingSystem
 
     def initialize
