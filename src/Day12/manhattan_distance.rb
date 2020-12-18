@@ -12,7 +12,7 @@ module Direction
     FORWARD = "F"
 end
 
-
+# This class is to find the manhattan distance between the x and y co-ordinate
 class ManhattanDistance
 
     include Direction
@@ -20,7 +20,6 @@ class ManhattanDistance
     def initialize
         @rows = FileReader.new.get_file_data("input.rtf").split("\n")
         
-        @ship_current_orientation = {"x" => EAST, "y" => NORTH}
         @ship_world_orientation = {"x" => EAST, "y" => NORTH}
         @ship_orientation = EAST
 
@@ -29,11 +28,22 @@ class ManhattanDistance
         @x_distance = 0
         @y_distance = 0
 
+        @waypoint = {"x" => 10, "y" => 1}
+        @waypoint_orientation = {"x" => EAST, "y" => NORTH}
+        @waypoint_angle = 0
+
         @ship_orientation_data = {
             0 => EAST,
             180 => WEST,
             270 => NORTH,
             90 => SOUTH
+        }
+
+        @waypoint_orientation_data = {
+            0 => [EAST, NORTH],
+            90 => [EAST, SOUTH],
+            180 => [WEST, SOUTH],
+            270 => [WEST, NORTH]
         }
     end
 
@@ -41,7 +51,11 @@ class ManhattanDistance
 
         @rows.each do |dir|
             amount = dir[1..dir.length - 1].to_i
-            update_direction_and_position dir[0], amount
+            # update_direction_and_position dir[0], amount
+            update_direction_and_position_based_on_waypoint dir[0], amount
+            puts @x_distance.to_s + "::" + @y_distance.to_s
+            puts @waypoint_orientation
+            puts "++++++++++++++++++++++++++++++"
         end
         [@x_distance, @y_distance]
     end
@@ -60,10 +74,45 @@ class ManhattanDistance
             @ship_angle = dir == LEFT ? @ship_angle - amount : @ship_angle + amount
             @ship_angle = @ship_angle % 360
                 
-            direction = @ship_orientation_data[@ship_angle]
-            @ship_orientation = direction
+            @ship_orientation = @ship_orientation_data[@ship_angle]
         when FORWARD
             update_direction_and_position @ship_orientation, amount
+        end
+    end
+
+    def update_direction_and_position_based_on_waypoint dir, amount
+        case dir
+        when EAST
+            @waypoint["x"] += amount
+        when WEST
+            @waypoint["x"] -= amount
+        when NORTH
+            @waypoint["y"] += amount
+        when SOUTH
+            @waypoint["y"] -= amount
+        when LEFT, RIGHT
+            @waypoint_angle = dir == LEFT ? @waypoint_angle - amount : @waypoint_angle + amount
+            @waypoint_angle = @waypoint_angle % 360
+
+            orientation_data = @waypoint_orientation_data[@waypoint_angle]
+            if (@waypoint_orientation["x"] == orientation_data[0] and 
+                @waypoint_orientation["y"] != orientation_data[1]) or
+                (@waypoint_orientation["x"] != orientation_data[0] and
+                @waypoint_orientation["y"] == orientation_data[1])
+                x_value = @waypoint["x"]
+                y_value = @waypoint["y"]
+
+                @waypoint["x"] = y_value
+                @waypoint["y"] = x_value
+            end
+            @waypoint_orientation["x"] = orientation_data[0]
+            @waypoint_orientation["y"] = orientation_data[1]
+        when FORWARD
+            x_value = @waypoint["x"] * amount
+            y_value = @waypoint["y"] * amount
+            puts x_value.to_s + "::" + y_value.to_s
+            update_direction_and_position @waypoint_orientation["x"], x_value
+            update_direction_and_position @waypoint_orientation["y"], y_value
         end
     end
 
