@@ -12,7 +12,8 @@ module Direction
     FORWARD = "F"
 end
 
-# This class is to find the manhattan distance between the x and y co-ordinate
+# This class is to find the manhattan distance between the x and y co-ordinates
+# The distance calculated is the absolute distance
 class ManhattanDistance
 
     include Direction
@@ -25,13 +26,6 @@ class ManhattanDistance
 
         @ship_angle = 0
 
-        @x_distance = 0
-        @y_distance = 0
-
-        @waypoint = {"x" => 10, "y" => 1}
-        @waypoint_orientation = {"x" => EAST, "y" => NORTH}
-        @waypoint_angle = 0
-
         @ship_orientation_data = {
             0 => EAST,
             180 => WEST,
@@ -39,27 +33,27 @@ class ManhattanDistance
             90 => SOUTH
         }
 
-        @waypoint_orientation_data = {
-            0 => [EAST, NORTH],
-            90 => [EAST, SOUTH],
-            180 => [WEST, SOUTH],
-            270 => [WEST, NORTH]
-        }
+        @x_distance = 0
+        @y_distance = 0
+
+        @waypoint = {"x" => 10, "y" => 1}
     end
 
-    def map_out_the_route_and_get_lat_long_data
+    # This method is used to get the final x,y coords of the ship
+    # It takes a function as an argument
+    # @args: the function can be position based on waypoint or just the direction
+    def map_out_the_route_and_get_x_y_coord func
 
         @rows.each do |dir|
             amount = dir[1..dir.length - 1].to_i
-            # update_direction_and_position dir[0], amount
-            update_direction_and_position_based_on_waypoint dir[0], amount
-            puts @x_distance.to_s + "::" + @y_distance.to_s
-            puts @waypoint_orientation
-            puts "++++++++++++++++++++++++++++++"
+            method(func).call dir[0], amount
         end
         [@x_distance, @y_distance]
     end
 
+    # This method is used to update the ship's direction and position
+    # @args: dir the command that needs to be executed N E W S L R F
+    # The amount that direction of angle needs to be adjusted by
     def update_direction_and_position dir, amount
         case dir
         when EAST
@@ -80,6 +74,10 @@ class ManhattanDistance
         end
     end
 
+    # This method is used to update the ship's position based on the waypoint
+    # This method also updates the waypoint
+    # @args: dir the command that needs to be executed N E W S L R F
+    # The amount that direction of angle needs to be adjusted by
     def update_direction_and_position_based_on_waypoint dir, amount
         case dir
         when EAST
@@ -90,29 +88,28 @@ class ManhattanDistance
             @waypoint["y"] += amount
         when SOUTH
             @waypoint["y"] -= amount
-        when LEFT, RIGHT
-            @waypoint_angle = dir == LEFT ? @waypoint_angle - amount : @waypoint_angle + amount
-            @waypoint_angle = @waypoint_angle % 360
+        when LEFT
+            for i in 1..amount/90
+                x_value = @waypoint["y"] * - 1
+                y_value = @waypoint["x"]
 
-            orientation_data = @waypoint_orientation_data[@waypoint_angle]
-            if (@waypoint_orientation["x"] == orientation_data[0] and 
-                @waypoint_orientation["y"] != orientation_data[1]) or
-                (@waypoint_orientation["x"] != orientation_data[0] and
-                @waypoint_orientation["y"] == orientation_data[1])
-                x_value = @waypoint["x"]
-                y_value = @waypoint["y"]
-
-                @waypoint["x"] = y_value
-                @waypoint["y"] = x_value
+                @waypoint["x"] = x_value
+                @waypoint["y"] = y_value
             end
-            @waypoint_orientation["x"] = orientation_data[0]
-            @waypoint_orientation["y"] = orientation_data[1]
+        when RIGHT
+            for i in 1..amount/90
+                x_value = @waypoint["y"]
+                y_value = @waypoint["x"] * -1
+
+                @waypoint["x"] = x_value
+                @waypoint["y"] = y_value
+            end
         when FORWARD
             x_value = @waypoint["x"] * amount
             y_value = @waypoint["y"] * amount
-            puts x_value.to_s + "::" + y_value.to_s
-            update_direction_and_position @waypoint_orientation["x"], x_value
-            update_direction_and_position @waypoint_orientation["y"], y_value
+            
+            @x_distance += x_value
+            @y_distance += y_value
         end
     end
 
@@ -123,5 +120,11 @@ end
 
 
 md = ManhattanDistance.new
-data = md.map_out_the_route_and_get_lat_long_data
+
+data = md.map_out_the_route_and_get_x_y_coord(:update_direction_and_position)
 puts md.get_manhattan_distance data[0], data[1]
+
+md1 = ManhattanDistance.new
+data1 = md1.map_out_the_route_and_get_x_y_coord(:update_direction_and_position_based_on_waypoint)
+
+puts md1.get_manhattan_distance data1[0], data1[1]
