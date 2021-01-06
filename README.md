@@ -12,6 +12,9 @@
 * Day 10: Adapter Array [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day10/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day10/jolt_difference.rb)]
 * Day 11: Seating System [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day11/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day11/seating_system.rb)]
 * Day 12: Rain Risk [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day12/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day12/manhattan_distance.rb)]
+* Day 13: Shuttle Search [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day13/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day13/shuttle_search.rb)]
+* Day 14: Docking Data [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day14/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day14/shuttle_search.rb)]
+* Day 15: Rambunctious Recitation [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day15/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day15/shuttle_search.rb)]
 
 ## License
 
