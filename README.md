@@ -15,6 +15,7 @@
 * Day 13: Shuttle Search [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day13/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day13/shuttle_search.rb)]
 * Day 14: Docking Data [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day14/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day14/docking_data.rb)]
 * Day 15: Rambunctious Recitation [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day15/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day15/counting_numbers.rb)]
+* Day 16: Ticket Translation [[problem_statement](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day16/problem_statement), [code](https://github.com/dheerajdhall27/advent_of_code_2020/blob/main/src/Day16/counting_numbers.rb)]
 
 ## License
 
